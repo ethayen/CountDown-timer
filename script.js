@@ -2,14 +2,34 @@ const dayElt = document.getElementById('days')
 const hourElt = document.getElementById('hours')
 const minElt = document.getElementById('mins')
 const secElt = document.getElementById('secs')
+const dateTxt = document.getElementById('dateInput')
+const dateBtn = document.getElementById('dateBtn')
+const h1Txt = document.getElementById('h1')
 
-const myBD = '2 Dec 2024'
+let dateIn = ''
 
-let countdown = () => {
-    const myBdate = new Date(myBD)
+dateBtn.onclick = () => {
+    dateIn = dateTxt.value
+    const datee = new Date()
+    h1Txt.innerHTML = `${dateIn}`
+    countdown(dateIn)   
+    
+}
+
+
+let refreshCount = (dateIn) => {
+   let num = 1
+   while(num == 10){
+    console.log(`num = ${num}`)   
+    num++
+   }
+}
+
+let countdown = (dateIn) => {
+    const myDate = new Date(dateIn)
     const currentDate = new Date()
 
-    const totalSec = (myBdate - currentDate) / 1000
+    const totalSec = (myDate - currentDate) / 1000
 
     const day = Math.ceil(totalSec / 3600 / 24)
 
@@ -29,6 +49,5 @@ const formatDate = (time) => {
     return time < 10 ? (`0${time}`) : time
 }
 
-countdown()
+// countdown()
 
-setInterval(countdown,1000)
